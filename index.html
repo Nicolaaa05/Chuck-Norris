@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuck Norris Jokes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 50px;
+        }
+        select, button {
+            display: block;
+            margin: 20px auto;
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        select:hover, button:hover {
+            background-color: #eaeaea;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #value {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 18px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<h1>CHUCK NORRIS JOKES</h1>
+
+<select name="categories" id="categories">
+    <option value="null">- Select a category -</option>
+    <option value="animal">Animal</option>
+    <option value="career">Career</option>
+    <option value="celebrity">Celebrity</option>
+    <option value="dev">Dev</option>
+    <option value="explicit">Explicit</option>
+    <option value="fashion">Fashion</option>
+    <option value="food">Food</option>
+    <option value="history">History</option>
+    <option value="money">Money</option>
+    <option value="movie">Movie</option>
+    <option value="music">Music</option>
+    <option value="political">Political</option>
+    <option value="religion">Religion</option>
+    <option value="science">Science</option>
+    <option value="sport">Sport</option>
+    <option value="travel">Travel</option>
+</select>
+<br>
+<br>
+<a class="api" href="#"><button>Get Joke</button></a>
+<br>
+<br>
+<br>
+<div id="value"></div>
+
+<script>
+    let btn = document.querySelector(".api")
+    let link = "https://api.chucknorris.io/jokes/random?category="
+
+    btn.addEventListener("click", function(event){
+        let category = document.querySelector("#categories").value
+        event.preventDefault();
+        fetch(link + category).then(function(resp){
+            return resp.json();
+        }).then(function(data){
+            document.querySelector("#value").innerHTML = data.value;
+        });
+    });
+</script>
+</body>
+</html>
